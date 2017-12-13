@@ -247,6 +247,35 @@ class Language
     }
 
     /**
+     * Returns the language short code.
+     *
+     * @param string $long
+     *
+     * @return string
+     **/
+    public static function getShortCode($long = 'default')
+    {
+        if ($long == 'default') {
+            $long = app()->getLocale();
+        }
+
+        $short = 'en';
+
+        // Get languages from config
+        $languages = config('language.all');
+
+        foreach ($languages as $language) {
+            if ($language['long'] != $long) {
+                continue;
+            }
+
+            $short = $language['short'];
+        }
+
+        return $short;
+    }
+
+    /**
      * Returns the language name.
      *
      * @param string $code
