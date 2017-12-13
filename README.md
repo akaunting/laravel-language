@@ -2,7 +2,7 @@
 
 [![Version](https://poser.pugx.org/akaunting/language/v/stable.svg)](https://github.com/akaunting/language/releases)
 [![Quality](https://scrutinizer-ci.com/g/akaunting/language/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/akaunting/language)
-[![StyleCI](https://styleci.io/repos/95012030/shield?style=flat&branch=master)](https://styleci.io/repos/95012030)
+[![StyleCI](https://styleci.io/repos/102290249/shield?style=flat&branch=master)](https://styleci.io/repos/102290249)
 [![Downloads](https://poser.pugx.org/akaunting/language/d/total.svg)](https://github.com/akaunting/language)
 [![License](https://poser.pugx.org/akaunting/language/license.svg)](LICENSE.md)
 
