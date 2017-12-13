@@ -103,7 +103,7 @@ class Language
         if ($locale) {
             return in_array($locale, array_keys(self::allowed()));
         }
-        
+
         if (config('language.allowed')) {
             return self::names(array_merge(config('language.allowed'), [config('app.locale')]));
         } else {
