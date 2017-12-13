@@ -22,10 +22,10 @@ class Provider extends ServiceProvider
         }
 
         $this->publishes([
-            __DIR__.'/Config/language.php' => config_path('language.php'),
-            __DIR__.'/Migrations/2020_01_01_000000_add_locale_column.php' => database_path('migrations/2020_01_01_000000_add_locale_column.php'),
-            __DIR__.'/Resources/views/flag.blade.php' => resource_path('views/vendor/language/flag.blade.php'),
-            __DIR__.'/Resources/views/flags.blade.php' => resource_path('views/vendor/language/flags.blade.php'),
+            __DIR__.'/Config/language.php'                                  => config_path('language.php'),
+            __DIR__.'/Migrations/2020_01_01_000000_add_locale_column.php'   => database_path('migrations/2020_01_01_000000_add_locale_column.php'),
+            __DIR__.'/Resources/views/flag.blade.php'                       => resource_path('views/vendor/language/flag.blade.php'),
+            __DIR__.'/Resources/views/flags.blade.php'                      => resource_path('views/vendor/language/flags.blade.php'),
         ], 'language');
 
         $router->aliasMiddleware('language', config('language.middleware'));
