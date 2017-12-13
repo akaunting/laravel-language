@@ -6,9 +6,7 @@
 [![Downloads](https://poser.pugx.org/akaunting/language/d/total.svg)](https://github.com/akaunting/language)
 [![License](https://poser.pugx.org/akaunting/language/license.svg)](LICENSE.md)
 
-This package allows to switch locale easily on Laravel projects.
-
-It's so simple to use, once it's installed, your App locale will change only by passing routes into SetLanguage middleware.
+This package allows switching locale easily on Laravel projects. It's so simple to use, once it's installed, your App locale will change only by passing routes into SetLanguage middleware.
 
 **Top features:**
 
