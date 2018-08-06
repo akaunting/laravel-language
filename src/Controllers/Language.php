@@ -22,7 +22,9 @@ class Language extends Controller
         }
 
         if (Auth::check()) {
-            Auth::user()->setAttribute('locale', $locale)->save();
+            $user = Auth::user();
+            $user->locale = $locale;
+            $user->save();
         } else {
             $request->session()->put('locale', $locale);
         }
