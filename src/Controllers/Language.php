@@ -40,7 +40,9 @@ class Language extends Controller
     {
         $this->setLocale($locale, $request);
 
-        return redirect(url('/'));
+        $url = config('language.url') ? url('/' . $locale) : url('/');
+
+        return redirect($url);
     }
 
     /**
@@ -55,6 +57,16 @@ class Language extends Controller
     {
         $this->setLocale($locale, $request);
 
-        return redirect()->back();
+        $session = $request->session();
+
+        if (config('language.url')) {
+            $previous_url = str_replace(env('APP_URL'), '', $session->previousUrl());
+
+            $url = rtrim(env('APP_URL'), '/') . '/' . $locale . '/' . ltrim($previous_url, '/');
+
+            $session->setPreviousUrl($url);
+        }
+
+        return redirect($session->previousUrl());
     }
 }
