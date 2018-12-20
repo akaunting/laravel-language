@@ -2,9 +2,9 @@
 
 namespace Akaunting\Language\Controllers;
 
-use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class Language extends Controller
 {
