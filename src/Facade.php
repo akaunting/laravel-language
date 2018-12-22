@@ -2,9 +2,9 @@
 
 namespace Akaunting\Language;
 
-use Illuminate\Support\Facades\Facade as BaceFacade;
+use Illuminate\Support\Facades\Facade as BaseFacade;
 
-class Facade extends BaceFacade
+class Facade extends BaseFacade
 {
     /**
      * Get the registered name of the component.
