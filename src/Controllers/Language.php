@@ -61,7 +61,7 @@ class Language extends Controller
 
         if (config('language.url')) {
             $previous_url = substr(str_replace(env('APP_URL'), '', $session->previousUrl()), 7);
-            
+
             if (strlen($previous_url) == 3) {
                 $previous_url = substr($previous_url, 3);
             } else {
