@@ -2,9 +2,6 @@
 
 namespace Akaunting\Language\Middleware;
 
-use App;
-use Auth;
-use Carbon\Carbon;
 use Closure;
 use Unicodeveloper\Identify\Facades\IdentityFacade as Identify;
 
@@ -23,7 +20,7 @@ class SetLocale
         }
 
         // Set app language
-        App::setLocale($locale);
+        \App::setLocale($locale);
 
         // Set carbon language
         if (config('language.carbon')) {
@@ -32,7 +29,7 @@ class SetLocale
                 $locale = explode('-', $locale)[0];
             }
 
-            Carbon::setLocale($locale);
+            \Carbon\Carbon::setLocale($locale);
         }
 
         // Set date language
@@ -57,7 +54,7 @@ class SetLocale
 
     public function setUserLocale()
     {
-        $user = Auth::user();
+        $user = auth()->user();
 
         if ($user->locale) {
             $this->setLocale($user->locale);
@@ -85,15 +82,12 @@ class SetLocale
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check()) {
+        if ($request->has('lang')) {
+            $this->setLocale($request->get('lang'));
+        } elseif (auth()->check()) {
             $this->setUserLocale();
         } else {
             $this->setSystemLocale($request);
-        }
-
-        //check lang as a passed parameter in URI
-        if($request->has('lang')){
-            $this->setLocale($request->lang);
         }
         
         return $next($request);
