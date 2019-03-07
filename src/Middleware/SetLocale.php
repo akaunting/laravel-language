@@ -89,7 +89,7 @@ class SetLocale
         } else {
             $this->setSystemLocale($request);
         }
-        
+
         return $next($request);
     }
 }
