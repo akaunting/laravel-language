@@ -91,6 +91,11 @@ class SetLocale
             $this->setSystemLocale($request);
         }
 
+        //check lang as a passed parameter in URI
+        if($request->has('lang')){
+            $this->setLocale($request->lang);
+        }
+        
         return $next($request);
     }
 }
