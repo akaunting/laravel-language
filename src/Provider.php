@@ -18,7 +18,7 @@ class Provider extends ServiceProvider
     public function boot(Router $router)
     {
         if (!$this->app->routesAreCached()) {
-            require __DIR__.'/Routes/web.php';
+            require __DIR__ . '/Routes/web.php';
         }
 
         $this->publishes([
