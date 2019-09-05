@@ -2,6 +2,8 @@
 
 namespace Akaunting\Language;
 
+use Illuminate\Support\Str;
+
 class Language
 {
     /**
@@ -36,7 +38,7 @@ class Language
 
         $this->app = $app;
         $this->version = $app->version();
-        $this->is_lumen = str_contains($this->version, 'Lumen');
+        $this->is_lumen = Str::contains($this->version, 'Lumen');
     }
 
     /**

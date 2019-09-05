@@ -1,7 +1,11 @@
 {
     "name": "akaunting/language",
     "description": "Language switcher package for Laravel.",
-    "keywords": ["laravel", "language", "switcher"],
+    "keywords": [
+        "laravel",
+        "language",
+        "switcher"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -16,14 +20,14 @@
         "laravel/framework": ">=5.4.0",
         "consoletvs/identify": "1.*"
     },
-	"autoload": {
-		"psr-4": {
-			"Akaunting\\Language\\": "./src"
-		},
+    "autoload": {
+        "psr-4": {
+            "Akaunting\\Language\\": "./src"
+        },
         "files": [
             "src/helpers.php"
         ]
-	},
+    },
     "extra": {
         "laravel": {
             "providers": [
