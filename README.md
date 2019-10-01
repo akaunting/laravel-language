@@ -183,7 +183,6 @@ If you discover any security related issues, please email security@akaunting.com
 ## Credits
 
 - [Denis Duliçi](https://github.com/denisdulici)
-- [Aitor Riba Archilla](https://github.com/24aitor)
 - [All Contributors](../../contributors)
 
 ## License
