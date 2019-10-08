@@ -75,7 +75,7 @@ class Language extends Controller
         return redirect(
             $session->previousUrl()
             ? $session->previousUrl()
-            : ( config('language.url') ? url('/' . $locale) : url('/') )
+            : (config('language.url') ? url('/' . $locale) : url('/'))
         );
     }
 }
