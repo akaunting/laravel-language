@@ -57,6 +57,19 @@ class Language extends Controller
     {
         $this->setLocale($locale, $request);
 
+        $url = config('language.strategy') === 'referer'
+            ? $this->getUrlFromReferer($request)
+            : $this->getUrlFromSession($request);
+
+        return redirect(
+            $url
+            ? $url
+            : (config('language.url') ? url('/' . $locale) : url('/'))
+        );
+    }
+
+    private function getUrlFromSession(Request $request)
+    {
         $session = $request->session();
 
         if (config('language.url')) {
@@ -72,10 +85,26 @@ class Language extends Controller
 
             $session->setPreviousUrl($url);
         }
-        return redirect(
-            $session->previousUrl()
-            ? $session->previousUrl()
-            : (config('language.url') ? url('/' . $locale) : url('/'))
-        );
+
+        return $session->previousUrl();
+    }
+
+    private function getUrlFromReferer(Request $request)
+    {
+        $url = $request->headers->get('referer');
+
+        if (config('language.url')) {
+            $url = substr(str_replace(env('APP_URL'), '', $url), 7);
+
+            if (strlen($url) === 3) {
+                $url = substr($url, 3);
+            } else {
+                $url = substr($url, strrpos($url, '/') + 1);
+            }
+
+            $url = rtrim(env('APP_URL'), '/') . '/' . $locale . '/' . ltrim($url, '/');
+        }
+
+        return $url;
     }
 }
