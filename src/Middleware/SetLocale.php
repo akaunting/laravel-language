@@ -3,7 +3,7 @@
 namespace Akaunting\Language\Middleware;
 
 use Closure;
-use Unicodeveloper\Identify\Facades\IdentityFacade as Identify;
+use Jenssegers\Agent\Agent;
 
 class SetLocale
 {
@@ -46,7 +46,9 @@ class SetLocale
     public function setDefaultLocale()
     {
         if (config('language.auto')) {
-            $this->setLocale(Identify::lang()->getLanguage());
+            $agent = new Agent();
+
+            $this->setLocale(reset($agent->languages()));
         } else {
             $this->setLocale(config('app.locale'));
         }
