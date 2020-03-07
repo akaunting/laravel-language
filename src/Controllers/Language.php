@@ -57,7 +57,7 @@ class Language extends Controller
     {
         $this->setLocale($locale, $request);
 
-        $url = config('language.strategy') === 'referer'
+        $url = config('language.back', 'session') === 'referer'
             ? $this->getUrlFromReferer($request)
             : $this->getUrlFromSession($request);
 

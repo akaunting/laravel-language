@@ -42,7 +42,7 @@ return [
     | It can be 'session' (default) or 'referer'
     |
     */
-    'strategy'          => 'session',
+    'back'          => 'session',
 
     /*
     |--------------------------------------------------------------------------
