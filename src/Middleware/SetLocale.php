@@ -48,7 +48,8 @@ class SetLocale
         if (config('language.auto')) {
             $agent = new Agent();
 
-            $this->setLocale(reset($agent->languages()));
+            $language = reset($agent->languages());
+            $this->setLocale($language);
         } else {
             $this->setLocale(config('app.locale'));
         }
