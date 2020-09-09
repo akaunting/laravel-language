@@ -58,8 +58,8 @@ class Language extends Controller
         $this->setLocale($locale, $request);
 
         $url = config('language.back', 'session') === 'referer'
-            ? $this->getUrlFromReferer($request)
-            : $this->getUrlFromSession($request);
+            ? $this->getUrlFromReferer($locale, $request)
+            : $this->getUrlFromSession($locale, $request);
 
         return redirect(
             $url
@@ -68,7 +68,7 @@ class Language extends Controller
         );
     }
 
-    private function getUrlFromSession(Request $request)
+    private function getUrlFromSession($locale, Request $request)
     {
         $session = $request->session();
 
@@ -89,7 +89,7 @@ class Language extends Controller
         return $session->previousUrl();
     }
 
-    private function getUrlFromReferer(Request $request)
+    private function getUrlFromReferer($locale, Request $request)
     {
         $url = $request->headers->get('referer');
 
