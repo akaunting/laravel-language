@@ -1,6 +1,6 @@
 {
-    "name": "akaunting/language",
-    "description": "Language switcher package for Laravel.",
+    "name": "akaunting/laravel-language",
+    "description": "Language switcher package for Laravel",
     "keywords": [
         "laravel",
         "language",

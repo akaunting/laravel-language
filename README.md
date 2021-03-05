@@ -1,10 +1,9 @@
 # Language switcher package for Laravel
 
-[![Version](https://img.shields.io/packagist/v/akaunting/language?label=release)](https://github.com/akaunting/language/releases)
-![Downloads](https://img.shields.io/packagist/dt/akaunting/language)
+![Downloads](https://img.shields.io/packagist/dt/akaunting/laravel-language)
 [![StyleCI](https://github.styleci.io/repos/102290249/shield?style=flat&branch=master)](https://styleci.io/repos/102290249)
-[![Quality](https://img.shields.io/scrutinizer/quality/g/akaunting/language?label=quality)](https://scrutinizer-ci.com/g/akaunting/language)
-[![License](https://img.shields.io/github/license/akaunting/language)](LICENSE.md)
+[![Quality](https://img.shields.io/scrutinizer/quality/g/akaunting/laravel-language?label=quality)](https://scrutinizer-ci.com/g/akaunting/laravel-language)
+[![License](https://img.shields.io/github/license/akaunting/laravel-language)](LICENSE.md)
 
 This package allows switching locale easily on Laravel projects. It's so simple to use, once it's installed, your App locale will change only by passing routes into SetLanguage middleware.
 
@@ -26,7 +25,7 @@ This package allows switching locale easily on Laravel projects. It's so simple 
 Run the following command:
 
 ```
-composer require akaunting/language
+composer require akaunting/laravel-language
 ```
 
 ### 2. Register (for Laravel < 5.5)
