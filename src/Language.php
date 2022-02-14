@@ -180,6 +180,36 @@ class Language
     }
 
     /**
+     * Add directions to an array of language codes as [$code => $direction].
+     *
+     * @param array $codes
+     *
+     * @return array
+     **/
+    public static function directions($codes)
+    {
+        // Get languages from config
+        $languages = config('language.all');
+
+        $array = [];
+
+        // Generate an array with $code as key and $code language as value
+        foreach ($codes as $code) {
+            $direction = 'ltr';
+
+            foreach ($languages as $language) {
+                if ($language[$mode['code']] == $code) {
+                    $direction = $language['direction'];
+                }
+            }
+
+            $array[$code] = $direction;
+        }
+
+        return $array;
+    }
+
+    /**
      * Returns the url to set up language and return back.
      *
      * @param string $code
@@ -291,5 +321,21 @@ class Language
         }
 
         return self::names([$code])[$code];
+    }
+
+    /**
+     * Returns the language direction.
+     *
+     * @param string $code
+     *
+     * @return string
+     **/
+    public static function direction($code = 'default')
+    {
+        if ($code == 'default') {
+            $code = app()->getLocale();
+        }
+
+        return self::directions([$code])[$code];
     }
 }
