@@ -188,6 +188,9 @@ class Language
      **/
     public static function directions($codes)
     {
+        // Get mode
+        $mode = config('language.mode');
+
         // Get languages from config
         $languages = config('language.all');
 
