@@ -113,7 +113,6 @@ return [
     | This option indicates the flags features.
     |
     */
-
     'flags'         => ['width' => '22px', 'ul_class' => '', 'li_class' => '', 'img_class' => ''],
 
     /*
@@ -127,7 +126,6 @@ return [
     | Long: languagecode-COUNTRYCODE (en-GB)
     |
     */
-
     'mode'          => ['code' => 'short', 'name' => 'native'],
 
     /*
@@ -138,7 +136,6 @@ return [
     | This options indicates the language allowed languages.
     |
     */
-
     'allowed'       => ['en', 'es', 'fr', 'de', 'it'],
 
     /*
@@ -149,7 +146,6 @@ return [
     | This option indicates the language codes and names.
     |
     */
-
     'all' => [
         ['short' => 'ar',       'long' => 'ar-SA',      'english' => 'Arabic',              'native' => 'العربية',                      'direction' => 'rtl'],
         ['short' => 'bg',       'long' => 'bg-BG',      'english' => 'Bulgarian',           'native' => 'български',                    'direction' => 'ltr'],
