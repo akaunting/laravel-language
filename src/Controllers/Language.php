@@ -21,7 +21,7 @@ class Language extends Controller
             $locale = config('app.locale');
         }
 
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->getAttribute('locale') instanceof  \Illuminate\Support\Collection) {
             Auth::user()->setAttribute('locale', $locale)->save();
         } else {
             $request->session()->put('locale', $locale);
