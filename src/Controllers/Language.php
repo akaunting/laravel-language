@@ -60,6 +60,8 @@ class Language extends Controller
         $url = config('language.back', 'session') === 'referer'
             ? $this->getUrlFromReferer($locale, $request)
             : $this->getUrlFromSession($locale, $request);
+        
+        $url = $request->url() == $url ? url('/') : $url; 
 
         return redirect(
             $url
