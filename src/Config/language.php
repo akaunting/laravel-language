@@ -148,8 +148,11 @@ return [
     */
     'all' => [
         ['short' => 'ar',       'long' => 'ar-SA',      'direction' => 'rtl',       'english' => 'Arabic',              'native' => 'العربية'],
+        ['short' => 'az',       'long' => 'az-AZ',      'direction' => 'ltr',       'english' => 'Azerbaijani',         'native' => 'Azərbaycan'],
         ['short' => 'bg',       'long' => 'bg-BG',      'direction' => 'ltr',       'english' => 'Bulgarian',           'native' => 'български'],
         ['short' => 'bn',       'long' => 'bn-BD',      'direction' => 'ltr',       'english' => 'Bengali',             'native' => 'বাংলা'],
+        ['short' => 'bs',       'long' => 'bs-BA',      'direction' => 'ltr',       'english' => 'Bosnian',             'native' => 'Bosanski'],
+        ['short' => 'ca',       'long' => 'ca-ES',      'direction' => 'ltr',       'english' => 'Catalan',             'native' => 'Català'],
         ['short' => 'cn',       'long' => 'zh-CN',      'direction' => 'ltr',       'english' => 'Chinese (S)',         'native' => '简体中文'],
         ['short' => 'cs',       'long' => 'cs-CZ',      'direction' => 'ltr',       'english' => 'Czech',               'native' => 'Čeština'],
         ['short' => 'da',       'long' => 'da-DK',      'direction' => 'ltr',       'english' => 'Danish',              'native' => 'Dansk'],
@@ -157,6 +160,7 @@ return [
         ['short' => 'de',       'long' => 'de-AT',      'direction' => 'ltr',       'english' => 'Austrian',            'native' => 'Österreichisches Deutsch'],
         ['short' => 'fi',       'long' => 'fi-FI',      'direction' => 'ltr',       'english' => 'Finnish',             'native' => 'Suomi'],
         ['short' => 'fr',       'long' => 'fr-FR',      'direction' => 'ltr',       'english' => 'French',              'native' => 'Français'],
+        ['short' => 'ea',       'long' => 'es-AR',      'direction' => 'ltr',       'english' => 'Spanish (Argentina)', 'native' => 'Español de Argentina'],
         ['short' => 'el',       'long' => 'el-GR',      'direction' => 'ltr',       'english' => 'Greek',               'native' => 'Ελληνικά'],
         ['short' => 'en',       'long' => 'en-AU',      'direction' => 'ltr',       'english' => 'English (AU)',        'native' => 'English (AU)'],
         ['short' => 'en',       'long' => 'en-CA',      'direction' => 'ltr',       'english' => 'English (CA)',        'native' => 'English (CA)'],
@@ -170,6 +174,7 @@ return [
         ['short' => 'hu',       'long' => 'hu-HU',      'direction' => 'ltr',       'english' => 'Hungarian',           'native' => 'Magyar'],
         ['short' => 'hy',       'long' => 'hy-AM',      'direction' => 'ltr',       'english' => 'Armenian',            'native' => 'Հայերեն',],
         ['short' => 'id',       'long' => 'id-ID',      'direction' => 'ltr',       'english' => 'Indonesian',          'native' => 'Bahasa Indonesia'],
+        ['short' => 'is',       'long' => 'is-IS',      'direction' => 'ltr',       'english' => 'Icelandic',           'native' => 'Íslenska'],
         ['short' => 'it',       'long' => 'it-IT',      'direction' => 'ltr',       'english' => 'Italian',             'native' => 'Italiano'],
         ['short' => 'ir',       'long' => 'fa-IR',      'direction' => 'rtl',       'english' => 'Persian',             'native' => 'فارسی'],
         ['short' => 'jp',       'long' => 'ja-JP',      'direction' => 'ltr',       'english' => 'Japanese',            'native' => '日本語'],
