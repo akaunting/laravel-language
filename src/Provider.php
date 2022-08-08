@@ -26,6 +26,7 @@ class Provider extends ServiceProvider
             __DIR__ . '/Migrations/2020_01_01_000000_add_locale_column.php'   => database_path('migrations/2020_01_01_000000_add_locale_column.php'),
             __DIR__ . '/Resources/views/flag.blade.php'                       => resource_path('views/vendor/language/flag.blade.php'),
             __DIR__ . '/Resources/views/flags.blade.php'                      => resource_path('views/vendor/language/flags.blade.php'),
+            __DIR__ . '/Resources/assets/img/flags/'                          => public_path('img/vendor/language/flags/'),
         ], 'language');
 
         $router->aliasMiddleware('language', config('language.middleware'));
