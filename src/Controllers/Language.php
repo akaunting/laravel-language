@@ -21,7 +21,7 @@ class Language extends Controller
             $locale = config('app.locale');
         }
 
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->getAttribute('locale') instanceof  \Illuminate\Support\Collection) {
             Auth::user()->setAttribute('locale', $locale)->save();
         } else {
             $request->session()->put('locale', $locale);
@@ -60,6 +60,8 @@ class Language extends Controller
         $url = config('language.back', 'session') === 'referer'
             ? $this->getUrlFromReferer($locale, $request)
             : $this->getUrlFromSession($locale, $request);
+        
+        $url = $request->url() == $url ? url('/') : $url;
 
         return redirect(
             $url

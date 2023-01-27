@@ -86,6 +86,8 @@ class SetLocale
     {
         if ($request->has('lang')) {
             $this->setLocale($request->get('lang'));
+        } elseif ($request->session()->get('locale')) {
+            $this->setLocale($request->session()->get('locale'));
         } elseif (auth()->check()) {
             $this->setUserLocale();
         } else {
