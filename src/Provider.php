@@ -4,7 +4,6 @@ namespace Akaunting\Language;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Jenssegers\Agent\AgentServiceProvider;
 
 class Provider extends ServiceProvider
 {
@@ -29,8 +28,6 @@ class Provider extends ServiceProvider
         ], 'language');
 
         $router->aliasMiddleware('language', config('language.middleware'));
-
-        $this->app->register(AgentServiceProvider::class);
 
         $this->app->singleton('language', function ($app) {
             return new Language($app);

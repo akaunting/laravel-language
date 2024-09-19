@@ -3,7 +3,6 @@
 namespace Akaunting\Language\Middleware;
 
 use Closure;
-use Jenssegers\Agent\Agent;
 
 class SetLocale
 {
@@ -46,9 +45,20 @@ class SetLocale
     public function setDefaultLocale()
     {
         if (config('language.auto')) {
-            $languages = (new Agent())->languages();
-
-            $this->setLocale(reset($languages));
+            $http_header_languages = request()->header('Accept-Language');
+            if ($http_header_languages) {
+                $languages = [];
+                foreach (explode(',', $http_header_languages) as $language) {
+                    $parts = explode(';', $language);
+                    $language = strtolower($parts[0]);
+                    $priority = empty($parts[1]) ? 1. : floatval(str_replace('q=', '', $parts[1]));
+                    $languages[$language] = $priority;
+                }
+                arsort($languages);
+                $this->setLocale(reset($languages));
+            } else {
+                $this->setLocale(config('app.locale'));
+            }
         } else {
             $this->setLocale(config('app.locale'));
         }
