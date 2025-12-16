@@ -2,9 +2,9 @@
 
 namespace Akaunting\Language\Controllers;
 
-use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class Language extends Controller
 {
@@ -13,8 +13,10 @@ class Language extends Controller
      *
      * @param string                   $locale
      * @param \Illuminate\Http\Request $request
+     *
+     * @return void
      **/
-    private function setLocale($locale, $request)
+    private function setLocale(string $locale, Request $request): void
     {
         // Check if is allowed and set default locale if not
         if (!language()->allowed($locale)) {
@@ -34,9 +36,9 @@ class Language extends Controller
      * @param string                   $locale
      * @param \Illuminate\Http\Request $request
      *
-     * @return string
+     * @return \Illuminate\Http\RedirectResponse
      **/
-    public function home($locale, Request $request)
+    public function home(string $locale, Request $request): \Illuminate\Http\RedirectResponse
     {
         $this->setLocale($locale, $request);
 
@@ -51,9 +53,9 @@ class Language extends Controller
      * @param string                   $locale
      * @param \Illuminate\Http\Request $request
      *
-     * @return string
+     * @return \Illuminate\Http\RedirectResponse
      **/
-    public function back($locale, Request $request)
+    public function back(string $locale, Request $request): \Illuminate\Http\RedirectResponse
     {
         $this->setLocale($locale, $request);
 
@@ -68,33 +70,51 @@ class Language extends Controller
         );
     }
 
-    private function getUrlFromSession($locale, Request $request)
+    /**
+     * Get URL from session.
+     *
+     * @param string                   $locale
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return string
+     */
+    private function getUrlFromSession(string $locale, Request $request): string
     {
         $session = $request->session();
 
         if (config('language.url')) {
-            $previous_url = substr(str_replace(env('APP_URL'), '', $session->previousUrl()), 7);
+            $app_url = config('app.url');
+            $previous_url = substr(str_replace($app_url, '', $session->previousUrl()), 7);
 
-            if (strlen($previous_url) == 3) {
+            if (strlen($previous_url) === 3) {
                 $previous_url = substr($previous_url, 3);
             } else {
                 $previous_url = substr($previous_url, strrpos($previous_url, '/') + 1);
             }
 
-            $url = rtrim(env('APP_URL'), '/') . '/' . $locale . '/' . ltrim($previous_url, '/');
+            $url = rtrim($app_url, '/') . '/' . $locale . '/' . ltrim($previous_url, '/');
 
             $session->setPreviousUrl($url);
         }
 
-        return $session->previousUrl();
+        return $session->previousUrl() ?? config('app.url');
     }
 
-    private function getUrlFromReferer($locale, Request $request)
+    /**
+     * Get URL from referer.
+     *
+     * @param string                   $locale
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return string|null
+     */
+    private function getUrlFromReferer(string $locale, Request $request): ?string
     {
         $url = $request->headers->get('referer');
 
         if (config('language.url')) {
-            $url = substr(str_replace(env('APP_URL'), '', $url), 7);
+            $app_url = config('app.url');
+            $url = substr(str_replace($app_url, '', $url), 7);
 
             if (strlen($url) === 3) {
                 $url = substr($url, 3);
@@ -102,7 +122,7 @@ class Language extends Controller
                 $url = substr($url, strrpos($url, '/') + 1);
             }
 
-            $url = rtrim(env('APP_URL'), '/') . '/' . $locale . '/' . ltrim($url, '/');
+            $url = rtrim($app_url, '/') . '/' . $locale . '/' . ltrim($url, '/');
         }
 
         return $url;

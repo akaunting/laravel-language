@@ -11,8 +11,10 @@ class SetLocale
      * This function checks if language to set is an allowed lang of config.
      *
      * @param string $locale
+     *
+     * @return void
      **/
-    private function setLocale($locale)
+    private function setLocale(string $locale): void
     {
         // Check if is allowed and set default locale if not
         if (!language()->allowed($locale)) {
@@ -25,7 +27,7 @@ class SetLocale
         // Set carbon language
         if (config('language.carbon')) {
             // Carbon uses only language code
-            if (config('language.mode.code') == 'long') {
+            if (config('language.mode.code') === 'long') {
                 $locale = explode('-', $locale)[0];
             }
 
@@ -35,7 +37,7 @@ class SetLocale
         // Set date language
         if (config('language.date')) {
             // Date uses only language code
-            if (config('language.mode.code') == 'long') {
+            if (config('language.mode.code') === 'long') {
                 $locale = explode('-', $locale)[0];
             }
 
@@ -43,7 +45,12 @@ class SetLocale
         }
     }
 
-    public function setDefaultLocale()
+    /**
+     * Set default locale.
+     *
+     * @return void
+     */
+    public function setDefaultLocale(): void
     {
         if (config('language.auto')) {
             $languages = (new Agent())->languages();
@@ -54,7 +61,12 @@ class SetLocale
         }
     }
 
-    public function setUserLocale()
+    /**
+     * Set user locale.
+     *
+     * @return void
+     */
+    public function setUserLocale(): void
     {
         $user = auth()->user();
 
@@ -65,7 +77,14 @@ class SetLocale
         }
     }
 
-    public function setSystemLocale($request)
+    /**
+     * Set system locale.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return void
+     */
+    public function setSystemLocale($request): void
     {
         if ($request->session()->has('locale')) {
             $this->setLocale(session('locale'));

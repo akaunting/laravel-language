@@ -46,18 +46,18 @@ class Language
      *
      * @param string $code
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\View\View
      **/
-    public static function flag($code = 'default')
+    public static function flag(string $code = 'default'): \Illuminate\Contracts\View\View
     {
-        if ($code == 'default') {
+        if ($code === 'default') {
             $code = app()->getLocale();
         }
 
         $name = self::getName($code);
         $code = self::country($code);
 
-        return view('vendor.language.flag', compact('code', 'name'));
+        return view('language::flag', compact('code', 'name'));
     }
 
     /**
@@ -65,15 +65,15 @@ class Language
      *
      * @param string $locale
      *
-     * @return mixed
+     * @return string
      **/
-    public static function country($locale = 'default')
+    public static function country(string $locale = 'default'): string
     {
-        if ($locale == 'default') {
+        if ($locale === 'default') {
             $locale = app()->getLocale();
         }
 
-        if (config('language.mode.code', 'short') == 'short') {
+        if (config('language.mode.code', 'short') === 'short') {
             $code = strtolower(substr(self::getLongCode($locale), 3));
         } else {
             $code = strtolower(substr($locale, 3));
@@ -85,22 +85,22 @@ class Language
     /**
      * Get all flags view.
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\View\View
      **/
-    public static function flags()
+    public static function flags(): \Illuminate\Contracts\View\View
     {
-        return view('vendor.language.flags');
+        return view('language::flags');
     }
 
     /**
      * Return true if $code is an allowed lang.
      * Get all allowed languages.
      *
-     * @param string $locale
+     * @param string|null $locale
      *
-     * @return bool|array
+     * @return bool|array<string, string>
      **/
-    public static function allowed($locale = null)
+    public static function allowed(?string $locale = null)
     {
         if ($locale) {
             return in_array($locale, array_keys(self::allowed()));
@@ -108,19 +108,19 @@ class Language
 
         if (config('language.allowed')) {
             return self::names(array_merge(config('language.allowed'), [config('app.locale')]));
-        } else {
-            return self::names([config('app.locale')]);
         }
+
+        return self::names([config('app.locale')]);
     }
 
     /**
      * Add names to an array of language codes as [$code => $language].
      *
-     * @param array $codes
+     * @param array<int, string> $codes
      *
-     * @return array
+     * @return array<string, string>
      **/
-    public static function names($codes)
+    public static function names(array $codes): array
     {
         // Get mode
         $mode = config('language.mode');
@@ -149,11 +149,11 @@ class Language
     /**
      * Add names to an array of language codes as [$language => $code].
      *
-     * @param array $langs
+     * @param array<int, string> $langs
      *
-     * @return array
+     * @return array<string, string>
      **/
-    public static function codes($langs)
+    public static function codes(array $langs): array
     {
         // Get mode
         $mode = config('language.mode');
@@ -182,11 +182,11 @@ class Language
     /**
      * Add directions to an array of language codes as [$code => $direction].
      *
-     * @param array $codes
+     * @param array<int, string> $codes
      *
-     * @return array
+     * @return array<string, string>
      **/
-    public static function directions($codes)
+    public static function directions(array $codes): array
     {
         // Get mode
         $mode = config('language.mode');
@@ -219,7 +219,7 @@ class Language
      *
      * @return string
      **/
-    public static function back($code)
+    public static function back(string $code): string
     {
         return route('language::back', ['locale' => $code]);
     }
@@ -231,7 +231,7 @@ class Language
      *
      * @return string
      **/
-    public static function home($code)
+    public static function home(string $code): string
     {
         return route('language::home', ['locale' => $code]);
     }
@@ -243,9 +243,9 @@ class Language
      *
      * @return string
      **/
-    public static function getCode($name = 'default')
+    public static function getCode(string $name = 'default'): string
     {
-        if ($name == 'default') {
+        if ($name === 'default') {
             $name = self::getName();
         }
 
@@ -259,9 +259,9 @@ class Language
      *
      * @return string
      **/
-    public static function getLongCode($short = 'default')
+    public static function getLongCode(string $short = 'default'): string
     {
-        if ($short == 'default') {
+        if ($short === 'default') {
             $short = app()->getLocale();
         }
 
@@ -271,7 +271,7 @@ class Language
         $languages = config('language.all');
 
         foreach ($languages as $language) {
-            if ($language['short'] != $short) {
+            if ($language['short'] !== $short) {
                 continue;
             }
 
@@ -288,9 +288,9 @@ class Language
      *
      * @return string
      **/
-    public static function getShortCode($long = 'default')
+    public static function getShortCode(string $long = 'default'): string
     {
-        if ($long == 'default') {
+        if ($long === 'default') {
             $long = app()->getLocale();
         }
 
@@ -300,7 +300,7 @@ class Language
         $languages = config('language.all');
 
         foreach ($languages as $language) {
-            if ($language['long'] != $long) {
+            if ($language['long'] !== $long) {
                 continue;
             }
 
@@ -317,9 +317,9 @@ class Language
      *
      * @return string
      **/
-    public static function getName($code = 'default')
+    public static function getName(string $code = 'default'): string
     {
-        if ($code == 'default') {
+        if ($code === 'default') {
             $code = app()->getLocale();
         }
 
@@ -333,12 +333,36 @@ class Language
      *
      * @return string
      **/
-    public static function direction($code = 'default')
+    public static function direction(string $code = 'default'): string
     {
-        if ($code == 'default') {
+        if ($code === 'default') {
             $code = app()->getLocale();
         }
 
         return self::directions([$code])[$code];
+    }
+
+    /**
+     * Get flag image path (checks custom path first, then package path).
+     *
+     * @param string $code
+     *
+     * @return string
+     **/
+    public static function flagPath(string $code = 'default'): string
+    {
+        if ($code === 'default') {
+            $code = app()->getLocale();
+        }
+
+        // Check if user published and customized flags
+        $customPath = public_path('vendor/language/flags/' . $code . '.png');
+        
+        if (file_exists($customPath)) {
+            return asset('vendor/language/flags/' . $code . '.png');
+        }
+        
+        // Fall back to package flags
+        return asset('vendor/akaunting/language/src/Resources/assets/img/flags/' . $code . '.png');
     }
 }

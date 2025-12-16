@@ -15,7 +15,7 @@ class Provider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Router $router)
+    public function boot(Router $router): void
     {
         if (!$this->app->routesAreCached()) {
             require __DIR__ . '/Routes/web.php';
@@ -28,11 +28,19 @@ class Provider extends ServiceProvider
             __DIR__ . '/Resources/views/flags.blade.php'                      => resource_path('views/vendor/language/flags.blade.php'),
         ], 'language');
 
+        // Publish flag assets (optional - for customization)
+        $this->publishes([
+            __DIR__ . '/Resources/assets/img/flags'                           => public_path('vendor/language/flags'),
+        ], 'language-flags');
+
+        // Load package views - Laravel automatically checks resources/views/vendor/language first
+        $this->loadViewsFrom(__DIR__ . '/Resources/views', 'language');
+
         $router->aliasMiddleware('language', config('language.middleware'));
 
         $this->app->register(AgentServiceProvider::class);
 
-        $this->app->singleton('language', function ($app) {
+        $this->app->singleton('language', function ($app): Language {
             return new Language($app);
         });
     }
@@ -42,7 +50,7 @@ class Provider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/Config/language.php', 'language');
     }

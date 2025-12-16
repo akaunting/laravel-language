@@ -6,7 +6,7 @@ if (!function_exists('language')) {
      *
      * @return \Akaunting\Language\Language
      */
-    function language()
+    function language(): \Akaunting\Language\Language
     {
         return app('language');
     }

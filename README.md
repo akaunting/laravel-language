@@ -1,11 +1,25 @@
 # Language switcher package for Laravel
 
 ![Downloads](https://img.shields.io/packagist/dt/akaunting/laravel-language)
+![Tests](https://github.com/akaunting/laravel-language/workflows/Tests/badge.svg)
 [![StyleCI](https://github.styleci.io/repos/102290249/shield?style=flat&branch=master)](https://styleci.io/repos/102290249)
 [![Quality](https://img.shields.io/scrutinizer/quality/g/akaunting/laravel-language?label=quality)](https://scrutinizer-ci.com/g/akaunting/laravel-language)
 [![License](https://img.shields.io/github/license/akaunting/laravel-language)](LICENSE.md)
 
 This package allows switching locale easily on Laravel projects. It's so simple to use, once it's installed, your App locale will change only by passing routes into SetLanguage middleware.
+
+## Version Compatibility
+
+| Laravel | PHP       | Package |
+|---------|-----------|---------|
+| 5.8     | 7.2 - 7.4 | ^2.0    |
+| 6.x     | 7.2 - 8.0 | ^2.0    |
+| 7.x     | 7.2 - 8.0 | ^2.0    |
+| 8.x     | 7.3 - 8.1 | ^2.0    |
+| 9.x     | 8.0 - 8.2 | ^2.0    |
+| 10.x    | 8.1 - 8.3 | ^2.0    |
+| 11.x    | 8.2 - 8.4 | ^2.0    |
+| 12.x    | 8.2 - 8.5 | ^2.0    |
 
 **Top features:**
 
@@ -28,27 +42,37 @@ Run the following command:
 composer require akaunting/laravel-language
 ```
 
-### 2. Register (for Laravel < 5.5)
+### 2. Register (Optional - Laravel 5.5+ Auto-Discovery)
 
-Register the service provider in ``config/app.php``
+> **Note**: Laravel 5.5+ automatically discovers the package. Manual registration is only needed for older versions.
+
+For Laravel < 5.5, register the service provider in `config/app.php`:
 
 ```php
 Akaunting\Language\Provider::class,
 ```
 
-Add alias if you want to use the facade.
+Add alias if you want to use the facade:
 
 ```php
-'Language'   => Akaunting\Language\Facade::class,
+'Language' => Akaunting\Language\Facade::class,
 ```
 
 ### 3. Publish
 
 Publish config, migration and blade files.
 
-```
+```bash
 php artisan vendor:publish --tag=language
 ```
+
+**Optional:** Publish flag images for customization (only if you want to replace flag images):
+
+```bash
+php artisan vendor:publish --tag=language-flags
+```
+
+This will copy flag images to `public/vendor/language/flags/` where you can replace them with your custom flags. The package will automatically use your custom flags if they exist, otherwise it will use the default package flags.
 
 ### 4. Migrate
 
@@ -181,6 +205,7 @@ If you discover any security related issues, please email security@akaunting.com
 
 ## Credits
 
+- [Cüneyt Şentürk](https://github.com/cuneytsenturk)
 - [Denis Duliçi](https://github.com/denisdulici)
 - [All Contributors](../../contributors)
 
